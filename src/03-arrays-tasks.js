@@ -619,10 +619,9 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 }
-
 /**
  * Returns array containing only unique values from the specified array.
  *
@@ -634,8 +633,10 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const res = new Set(arr);
+  const resArr = [...res];
+  return resArr;
 }
 
 /**
@@ -726,8 +727,34 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const a = [];
+  const b = [];
+  if (arr.length % 2 === 0) {
+    const r = arr.length / 2;
+    arr.map((e, i) => {
+      if (i < r) {
+        a.push(e);
+      } else {
+        b.push(e);
+      }
+      return 0;
+    });
+    return b.concat(a);
+  }
+  const o = Math.ceil(arr.length / 2);
+  const z = [o];
+  arr.map((e) => {
+    if (e < o && arr.length > 1) {
+      z.push(e);
+    } else if (arr.length === 1) {
+      return [e];
+    } else if (e !== o) {
+      a.push(e);
+    }
+    return 0;
+  });
+  return a.concat(z);
 }
 
 
